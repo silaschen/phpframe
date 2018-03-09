@@ -1,0 +1,22 @@
+<div class="kpi-data" qva-activate="onShowVerifyDialog()">
+		<div ng-show="baseLayoutInfo.components[0].show" class="measure-wrapper center" ng-class="textAlign" ng-style="measureTitleStyle" style="font-size: 222%;">
+			<div class="measure-title ellips-text" title="Market Server Unit">
+				<span ng-bind="measureTitle" class="ng-binding">Market Server Unit</span>
+				<!-- ngIf: linkInteractionOn -->
+			</div>
+		</div>
+		<div class="value-wrapper center" ng-class="textAlign">
+			<div class="ellips-text" ng-class="{ 'no-shrink' : secondaryValues.length &amp;&amp; baseLayoutInfo.components[1].components[1].components[0].show}">
+				<div class="ellips-text ng-isolate-scope" value="mainValue.value" formatted-value="mainValue.formattedValue" value-style="mainValue.style" formatter="mainValue.formatter" glyph="mainValue.glyph" show-glyph="mainValue.showGlyph">
+	<div class="kpi-value" ng-style="valueStyle" style="color: rgb(68, 119, 170); font-size: 832.5%;">
+		<div class="ellips-text">
+			<span ng-bind="currentFormattedValue" title="1K" class="ng-binding">1K</span>
+		</div>
+		<!-- ngIf: showGlyph -->
+	</div>
+	<div class="kpi-title ellips-text ng-binding" ng-style="titleStyle" ng-bind="measureTitle"></div>
+</div>
+			</div>
+			<!-- ngRepeat: secondaryValue in secondaryValues -->
+		</div>
+	</div>
