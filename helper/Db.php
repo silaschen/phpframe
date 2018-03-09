@@ -1,4 +1,5 @@
 <?php
+namespace helper;
 class Db
 {
 	private $conn;//数据库连接标识
