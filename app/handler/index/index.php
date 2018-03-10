@@ -1,6 +1,5 @@
 <?php 
 namespace chensw;
-include_once "E:/jiajia/local/auto.php";
 function executeRequest(){
 	$handler = new IndexHandler();
 	$handler->run();
@@ -28,13 +27,15 @@ class IndexHandler
 
 	private function index(){
 
-		echo "this is index/index";
+		$content = file_get_contents("a.txt");
+		var_dump($content);
 	}
 
 	private function list(){
 		$db = \helper\Db::client();
 		$res = $db->query("select * from blog");
 		var_dump($res);
+
 
 	}
 	
