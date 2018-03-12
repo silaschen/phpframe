@@ -1,12 +1,9 @@
-<?php 
-namespace chensw;
+<?php
 include_once __DIR__."/auto.php";
 $module = filter_input(INPUT_GET, 'module');
 $page = filter_input(INPUT_GET, 'page');
 ini_set("display_errors", "On");
 error_reporting(E_ALL);    //报告所有的错误
-// error_reporting(E_ERROR);       // 只报告致命错误
-// var_dump([$module,$page]);
 define("DEFAULT_PAGE", realpath(__DIR__."/app/handler/index/index.php"));
 function handurl(){
 	if(empty($module) || empty($page)){
@@ -23,6 +20,5 @@ function handurl(){
 $path = handurl();
 // print $path;
 include_once $path;
-executeRequest();
-
+\app\handler\index\executeRequest();
 

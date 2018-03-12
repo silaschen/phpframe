@@ -1,13 +1,12 @@
 <?php
 namespace helper;
-include_once __DIR__."/../config/config.php";
 class Db
 {
 	private $conn;//数据库连接标识
 	private static $client;//类的实例
 	//私有构造函数，禁止外界new
 	private function __construct()
-	{	$dbconfig = \config\Config::get('db');
+	{	$dbconfig = \config\Config::$db;
 		$dsn= $dbconfig['dsn'];
 		$user = $dbconfig['user'];
 		$pass = $dbconfig['password'];

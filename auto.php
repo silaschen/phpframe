@@ -9,5 +9,6 @@ spl_autoload_register(function($class){
 			$path .= "/".$value;
 	}
 	$classpath = $path."/".$classname;
+	// echo $classpath;
 	include_once $classpath;
 });

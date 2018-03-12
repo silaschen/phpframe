@@ -1,5 +1,5 @@
 <?php 
-namespace chensw;
+namespace app\handler\index;
 function executeRequest(){
 	$handler = new IndexHandler();
 	$handler->run();
@@ -25,18 +25,17 @@ class IndexHandler
 		}
 	}
 
-	private function index(){
+	public function index(){
 
-		$content = file_get_contents("a.txt");
-		var_dump($content);
+		//$content = file_get_contents("a.txt");
+	    //var_dump($content);
+		echo "hello index";
 	}
 
 	private function list(){
 		$db = \helper\Db::client();
 		$res = $db->query("select * from blog");
 		var_dump($res);
-
-
 	}
 	
 
