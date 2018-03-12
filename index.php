@@ -1,5 +1,4 @@
 <?php
-include_once __DIR__."/auto.php";
 $module = filter_input(INPUT_GET, 'module');
 $page = filter_input(INPUT_GET, 'page');
 ini_set("display_errors", "On");

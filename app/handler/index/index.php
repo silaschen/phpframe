@@ -1,5 +1,7 @@
 <?php 
 namespace app\handler\index;
+use helper\Db;
+include_once "auto.php";
 function executeRequest(){
 	$handler = new IndexHandler();
 	$handler->run();
@@ -26,14 +28,12 @@ class IndexHandler
 	}
 
 	public function index(){
-
-		//$content = file_get_contents("a.txt");
-	    //var_dump($content);
-		echo "hello index";
+		global $smarty;
+		$smarty->display('index.tpl');
 	}
 
 	private function list(){
-		$db = \helper\Db::client();
+		$db = Db::client();
 		$res = $db->query("select * from blog");
 		var_dump($res);
 	}
