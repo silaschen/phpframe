@@ -19,5 +19,8 @@ function handurl(){
 $path = handurl();
 // print $path;
 include_once $path;
-\app\handler\index\executeRequest();
 
+// var_dump("\\app\index\\$module\\");
+$spa = "\\app\\handler\\$module\\executeRequest";
+// echo $spa;exit;
+$spa();

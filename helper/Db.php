@@ -37,7 +37,7 @@ class Db
 
 	//插入，更新
 	public function execute($sql){
-		return $this->conn->execute($sql);
+		return $this->conn->exec($sql);
 	}
 
 }

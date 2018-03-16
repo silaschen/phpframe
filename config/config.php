@@ -8,7 +8,7 @@ namespace config;
 class Config
 {
 	public static $db=array(
-		'dsn' => "mysql:host=127.0.0.1;dbname=film",
+		'dsn' => "mysql:host=127.0.0.1;dbname=ll",
 		'user' => 'root',
 		'password' => 'root'
 	);
@@ -16,7 +16,8 @@ class Config
 	public static $redis=array(
 		'host' => '127.0.0.1',
 		'password' => '',
-		'db'=>1
+		'port'=>6379,
+		'db'=>5
 	);
 
 
