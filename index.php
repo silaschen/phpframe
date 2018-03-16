@@ -1,5 +1,6 @@
 <?php
-$module = filter_input(INPUT_GET, 'module');
+define("DEFAULT_MODULE",'index');
+$module = filter_input(INPUT_GET, 'module')?filter_input(INPUT_GET,'module'):DEFAULT_MODULE;
 $page = filter_input(INPUT_GET, 'page');
 ini_set("display_errors", "On");
 error_reporting(E_ALL);    //报告所有的错误
@@ -17,10 +18,6 @@ function handurl(){
 }
 
 $path = handurl();
-// print $path;
 include_once $path;
-
-// var_dump("\\app\index\\$module\\");
 $spa = "\\app\\handler\\$module\\executeRequest";
-// echo $spa;exit;
 $spa();
