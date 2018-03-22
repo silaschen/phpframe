@@ -25,5 +25,13 @@ class Config
 		'db'=>5
 	);
 
+	public static $mailcfg = array(
+		'host'=>'smtp.qq.com',
+		'mailname'=>'434684326@qq.com',
+		'password'=>'tcgvwzmwmqbdcaii',
+		'from'=>'redphp',
+		'port'=>465
+	);
+
 
 }
