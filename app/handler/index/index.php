@@ -24,10 +24,15 @@ class IndexHandler
 	}
 
 
-	private function index(){
-		global $smarty;
-		$smarty->display('index.tpl');
+	public function index(){
+		if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+			global $smarty;
+			$smarty->display('index.tpl');
+		}
+	
 	}
+
+
 
 
 }

@@ -7,6 +7,11 @@ namespace config;
 */
 class Config
 {
+	const UPLOADPATH = 'D:/uploadfile';
+	const ALLOW_UPLOAD_FILE = array(
+		'jpg','png','pdf'
+	);
+	public static $webroot="http://local.com";
 	public static $db=array(
 		'dsn' => "mysql:host=127.0.0.1;dbname=ll",
 		'user' => 'root',

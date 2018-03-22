@@ -1,6 +1,6 @@
 <?php
-$module = filter_input(INPUT_GET, 'module');
-$page = filter_input(INPUT_GET, 'page');
+$module = filter_input(INPUT_GET, 'module')?filter_input(INPUT_GET, 'module'):'index';
+$page = filter_input(INPUT_GET, 'page')?filter_input(INPUT_GET, 'page') : 'index';
 ini_set("display_errors", "On");
 error_reporting(E_ALL);    //报告所有的错误
 define("DEFAULT_PAGE", realpath(__DIR__."/app/handler/index/index.php"));
