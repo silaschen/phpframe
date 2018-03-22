@@ -26,8 +26,9 @@ class IndexHandler
 
 	public function index(){
 		if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-			global $smarty;
-			$smarty->display('index.tpl');
+			// global $smarty;
+			// $smarty->display('index.tpl');
+			var_dump(\helper\Assist::sendmail('chensiwei1@outlook.com','love','dsa'));
 		}
 	
 	}
