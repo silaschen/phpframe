@@ -34,7 +34,7 @@ class IndexHandler
 			  	$host = "http://jisutqybmf.market.alicloudapi.com/weather/query";
 			    $appcode = "cc85d5c6c51f4165b8eaee7ad3c0f721";
 			    $headers = array();
-			    array_push($headers, "Authorization:cc85d5c6c51f4165b8eaee7ad3c0f721");
+			    array_push($headers, "Authorization:APPCODE cc85d5c6c51f4165b8eaee7ad3c0f721");
 			    $querys = "city='北京'";
 			    $url = $host. "?" . $querys;
 			$c = Assist::CallServer($url,'GET',$headers,array());
