@@ -1,5 +1,5 @@
 <?php
-include_once "config/smarty-3.1.29/libs/Smarty.class.php";
+include_once __DIR__."/../config/smarty-3.1.29/libs/Smarty.class.php";
 define("SMARTY_TEMPLATE_PATH", "smarty/app");
 define("SMARTY_COMPILE_PATH", "smarty/compile");
 define("SMARTY_CACHE_PATH", "smarty/cache");

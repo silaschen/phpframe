@@ -1,5 +1,5 @@
 <?php 
-include_once "config/smarty.php";
+include_once __DIR__."/config/smarty.php";
 spl_autoload_register(function($class){
 	// echo $class."-----";
 	$param = explode("\\",$class);
