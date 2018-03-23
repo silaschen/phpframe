@@ -47,7 +47,6 @@ class Assist
         );
 	}
 
-
 	/**
 	*send mail
 	*/
@@ -57,7 +56,8 @@ class Assist
 		try {
 		    //Server settings
 		    $mail->SMTPDebug = false;                              // Enable verbose debug output
-		    $mail->isSMTP();                                      // Set mailer to use SMTP
+		    $mail->isSMTP();           
+		    $mail->CharSet='UTF-8';                           // Set mailer to use SMTP
 		    $mail->Host = $mailcfg['host'];  // Specify main and backup SMTP servers
 		    $mail->SMTPAuth = true;                               // Enable SMTP authentication
 		    $mail->Username = $mailcfg['mailname'];                 // SMTP username
