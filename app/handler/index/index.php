@@ -28,6 +28,7 @@ class IndexHandler
 		if (Assist::isGet()) {
 			  	global $smarty;
 			  	$smarty->display('index.tpl');
+			
 		}
 	
 	}
