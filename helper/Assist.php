@@ -20,6 +20,34 @@ class Assist
 	}
 
 	/**
+	*Curl get and post server
+	*/
+	public static function CallServer($url,$method='GET',$header=array(),$data=array()){
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		if(!empty($header)) curl_setopt($ch, CURLOPT_HTTPHEADER, $header);//设置http头信息
+		curl_setopt($ch, CURLOPT_HEADER, false);//开启将输出数据流
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);//	TRUE 将curl_exec()获取的信息以字符串返回，而不是直接输出。
+		if($method === 'POST'){
+			curl_setopt($ch, CURLOPT_POST, true);//发起post请求
+			curl_setopt($ch, CURLOPT_POSTFIELDS, is_array($data) ? json_encode($data):$data);
+		}
+		$content = curl_exec($ch);
+        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        if($code === 0){
+            throw new \Exception(curl_error($ch));
+        }
+        curl_close($ch);
+        return array(
+            'code' => $code,
+            'content' => $content,
+        );
+	}
+
+	/**
 	*send mail
 	*/
 	public static function sendmail($user,$subject,$body){
@@ -28,7 +56,8 @@ class Assist
 		try {
 		    //Server settings
 		    $mail->SMTPDebug = false;                              // Enable verbose debug output
-		    $mail->isSMTP();                                      // Set mailer to use SMTP
+		    $mail->isSMTP();           
+		    $mail->CharSet='UTF-8';                           // Set mailer to use SMTP
 		    $mail->Host = $mailcfg['host'];  // Specify main and backup SMTP servers
 		    $mail->SMTPAuth = true;                               // Enable SMTP authentication
 		    $mail->Username = $mailcfg['mailname'];                 // SMTP username
@@ -55,6 +84,17 @@ class Assist
 		    return ['msg'=>$mail->ErrorInfo];
 		}
 	}
+
+	public static function isGet(){
+		return $_SERVER['REQUEST_METHOD'] === 'GET';
+	}
+
+	public static function isPost(){
+
+		return $_SERVER['REQUEST_METHOD'] === 'POST';
+	} 
+
+
 
 
 

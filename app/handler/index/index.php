@@ -1,6 +1,7 @@
 <?php 
 namespace app\handler\index;
 include_once "auto.php";
+use helper\Assist;
 function executeRequest(){
 	$handler = new IndexHandler();
 	$handler->run();
@@ -23,17 +24,14 @@ class IndexHandler
 		}
 	}
 
-
 	public function index(){
-		if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-			// global $smarty;
-			// $smarty->display('index.tpl');
-			var_dump(\helper\Assist::sendmail('chensiwei1@outlook.com','love','dsa'));
+		if (Assist::isGet()) {
+			  	global $smarty;
+			  	$smarty->display('index.tpl');
+			
 		}
 	
 	}
-
-
 
 
 }
