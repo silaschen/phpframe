@@ -1,7 +1,7 @@
 <?php 
 include_once __DIR__."/config/smarty.php";
 spl_autoload_register(function($class){
-	 echo $class."-----";
+	 //echo $class."-----";
 	$param = explode("\\",$class);
 	$classname = end($param).".php";
 	$path = __DIR__;
