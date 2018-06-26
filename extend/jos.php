@@ -69,5 +69,8 @@ class Jose
 
     return ['res'=>$this->handler->now(),'outlist'=>$this->outlist]; 
   }
+
+
+  
 }
 

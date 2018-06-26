@@ -75,8 +75,10 @@
       </div>
     </footer>
 
-
-
+<script type="text/javascript">
+	dada=12432423;
+</script>
+<script type="text/javascript" src="http://data.com/default/stat/h5view_mobile?id='"+dada+"'&partnerid=1232131231"></script>
 
 </body>
 </html>

@@ -7,13 +7,13 @@ namespace config;
 */
 class Config
 {
-	const UPLOADPATH = 'D:/uploadfile';
+	const UPLOADPATH = '/var/www';
 	const ALLOW_UPLOAD_FILE = array(
 		'jpg','png','pdf'
 	);
-	public static $webroot="http://local.com";
+	public static $webroot="http://sw.com";
 	public static $db=array(
-		'dsn' => "mysql:host=127.0.0.1;dbname=ll",
+		'dsn' => "mysql:host=127.0.0.1;dbname=film",
 		'user' => 'root',
 		'password' => 'root'
 	);
@@ -22,14 +22,14 @@ class Config
 		'host' => '127.0.0.1',
 		'password' => '',
 		'port'=>6379,
-		'db'=>5
+		'db'=>3
 	);
 
 	public static $mailcfg = array(
 		'host'=>'smtp.qq.com',
 		'mailname'=>'434684326@qq.com',
 		'password'=>'tcgvwzmwmqbdcaii',
-		'from'=>'redphp',
+		'from'=>'男宠天气提醒',
 		'port'=>465
 	);
 
