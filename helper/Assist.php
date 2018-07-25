@@ -93,7 +93,11 @@ class Assist
 
 		return $_SERVER['REQUEST_METHOD'] === 'POST';
 	} 
-
+        
+	public static function IsMobile(){
+	
+		return striposs('iphone',$_SERVER['HTTP_USER_AGENT']) !== false;
+	}
 
 
 
