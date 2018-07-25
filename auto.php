@@ -1,11 +1,13 @@
 <?php 
 include_once __DIR__."/config/smarty.php";
 spl_autoload_register(function($class){
-	 //echo $class."-----";
+	 echo $class."-----";
 	$param = explode("\\",$class);
 	$classname = end($param).".php";
 	$path = __DIR__;
 	array_pop($param);
+
+	var_dump($param);
 	$path = array(__DIR__.'/extend',__DIR__);
 	for ($i=0; $i < count($path); $i++) { 
 			
