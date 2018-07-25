@@ -32,6 +32,7 @@ class Config
 		'from'=>'redphp',
 		'port'=>465
 	);
+	public static $SITE_NAME='SWBlog';
 
 
 }
