@@ -3,14 +3,14 @@ namespace app\handler\api;
 use helper\redisClient;
 use helper\Assist;
 function executeRequest(){
-	$handler = new IndexHandler();
+	$handler = new MiniHandler();
 	$handler->run();
 }
 
 
 define('APPID', 'wx8482a902f90eb22d');
 define('SECRET', 'f01ba4f4e758363a1d128fd12c79f67a');
-class MiniAction extends CommonAction{
+class MiniHandler{
 	public $openid;
 	
 	public function run(){
