@@ -13,7 +13,7 @@ class Config
 	);
 	public static $webroot="http://local.com";
 	public static $db=array(
-		'dsn' => "mysql:host=127.0.0.1;dbname=ll",
+		'dsn' => "mysql:host=127.0.0.1;dbname=test",
 		'user' => 'root',
 		'password' => 'root'
 	);
@@ -32,7 +32,7 @@ class Config
 		'from'=>'redphp',
 		'port'=>465
 	);
-	public static $SITE_NAME='SWBlog';
+	public static $SITE_NAME='Blog';
 
 
 }
