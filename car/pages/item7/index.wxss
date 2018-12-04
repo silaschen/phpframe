@@ -1,0 +1,106 @@
+/* pages/section/item2.wxss */
+.guide{width: 100%;margin-bottom:10rpx;}
+.guide image{width: 100%}
+.form-group{margin: 0;}
+#form{
+  margin: 0;
+  border: none;
+  padding:0 20rpx 10rpx 20rpx;
+}
+#form button{margin-top: 10px;}
+.address{font-size: 25rpx;color:#999;margin: 5px 15px;}
+.address text{width: 100%;display: block;line-height: 38rpx;}
+page{
+  background: #f5f5f5;
+  padding-bottom:60rpx;
+}
+/*地图*/
+view.address {
+  display: flex;
+  margin:0;
+   color:#333;
+}
+
+view.address text{
+  padding:26rpx 0;
+  font-size:28rpx;
+}
+view.address text.default{
+  color:#999;
+}
+view.addrbtn{
+  margin:0 0 20rpx 0;
+}
+view.addrbtn button{
+  border-radius: 10rpx;
+}
+/*上传图片  */ 
+.addimg{
+  padding:0 20rpx;
+  border:1rpx solid #eee;
+  border-radius: 10rpx;
+}
+.addimg .com{
+  display: inline-block;
+}
+.addimg .com view{
+  display: inline-block;
+  width:150rpx;
+  height:150rpx;
+  margin-right:20rpx;
+  position: relative
+}
+.addimg .com view image{
+  width:150rpx;
+  height:150rpx;
+  display: block;
+}
+.addimg .com view text{
+  position: absolute;
+  line-height: 1;
+  padding:8rpx 10rpx;
+  font-size:28rpx;
+  color:#fff;
+left:0;
+top:0;
+background: red;
+}
+
+/*支付底部导航  */
+.pay{
+  display: flex;
+  display:-webkit-flex;
+  position: fixed;
+  bottom:0;
+  width:100%;
+  left:0;
+}
+.pay .money{
+  width:30%;
+  background: #fff;
+  text-align: center;
+  line-height: 100rpx;
+  color:#129FE7;
+  font-size:40rpx;
+}
+.pay .money text{
+  font-weight: 800;
+}
+.pay .money .cont{
+  margin-top:20rpx;
+}
+.pay .money text{
+  font-weight: 800;
+  line-height: 1;
+  display: block;
+}
+.pay .money text:last-child{
+  color:#999;
+  font-size:24rpx;
+  font-weight: normal;
+}
+#form .pay button{
+  width:70%;
+  margin:0;
+  border:none;
+}

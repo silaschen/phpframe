@@ -1,0 +1,71 @@
+<view class="page">
+  <view class="clear">
+    <view class="pull-left">
+      <view>
+        <image src="../../res/7.png"></image>代驾帮审车</view>
+    </view>
+    <view class="pull-right">
+      <text>￥ {{money}}</text>
+    </view>
+  </view>
+  <view class="tinyline"></view>
+  <view class="info">
+    <view class="name com">
+      <i class="iconfont icon-gerenxinxi"></i><text>{{name}}</text>
+    </view>
+    <view class="tinyline"></view>
+    <view class="code com">
+      <i class="iconfont icon-shijianrili"></i><text>{{code}}</text>
+    </view>
+    <view class="tinyline"></view>
+    <view class="tel com">
+      <i class="iconfont icon-shouji"></i><text>{{tel}}</text>
+    </view>
+    <view class="tinyline"></view>
+
+    <view class="addr com" bindtap="GetAdr">
+      <i class="iconfont icon-weizhi"></i><text>{{address}}</text>
+    </view>
+
+
+    <view id="somap">
+
+      <map longitude="{{lon}}" latitude="{{lat}}" markers="{{markers}}" scale="12" id="myMap" show-location />
+
+
+
+
+      <button bindtap="CopyAdr" type="default" id="btnmap">复制取车地址</button>
+      <button bindtap="OpenAdr" type="default" id="navmap">点击地图导航</button>
+    </view>
+    <view class="tinyline"></view>
+    <view class="company com" wx:if="{{stat==3}}">
+      <i class="iconfont icon-zhuye"></i><text>{{company}}</text>
+    </view>
+    <view class="tinyline" wx:if="{{stat==3}}"></view>
+    <view class="num com" wx:if="{{stat==3}}">
+      <i class="iconfont icon-pinglun"></i><text>{{num}}</text>
+    </view>
+    <view class="tinyline" wx:if="{{stat==3}}"></view>
+  </view>
+  <view class="foot" wx:if="{{stat==0}}">
+    <button type="primary" disabled>订单已取消</button>
+  </view>
+  <view class="foot" wx:if="{{stat==3}}">
+    <button type="primary" class="shouhuo" bindtap="GetLetter">确认收货</button>
+  </view>
+  <view class="foot" wx:if="{{stat==4}}">
+    <button type="primary" disabled class="bj">业务已办结</button>
+  </view>
+  <view class="foot" wx:if="{{stat==0}}">
+    <button type="primary" disabled>订单已取消</button>
+  </view>
+  <view class="foot" wx:if="{{stat==1}}">
+    <view class="cancelOrder" bindtap="CancelOrder">取消订单</view>
+    <button type="primary" class="toPay" bindtap="ToPay"><text>￥{{money}} 确认支付</text></button>
+  </view>
+  <view class="foot" wx:if="{{stat==2}}">
+    <button type="primary" class="pay" disabled>订单已支付</button>
+  </view>
+
+</view>

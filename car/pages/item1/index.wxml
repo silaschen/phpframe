@@ -1,0 +1,92 @@
+
+<form report-submit="true" id="form" class="box" bindsubmit="SubmitData">
+    <view class="form-group">
+        <picker value="{{CarIndex}}" range-key="cp" bindchange="ChangeCarCode" range="{{CarCodes}}">
+      <label class="addon fontcolor">{{CarCodes[CarIndex].cp}}</label>
+    </picker>
+        <input maxlength="5" type="text" name='cphm' class="upper" placeholder="车牌号码" confirm-type='next' value="{{cphm}}" />
+    </view>
+    <view class="tinyline"></view>
+    <view class="form-group">
+        <label class="addon">车主</label>
+        <input type="text" name='name' placeholder="姓名" confirm-type='next' value="{{name}}"/>
+    </view>
+    <view class="tinyline"></view>
+    <view class="form-group">
+        <label class="addon">手机</label>
+        <input type="number" name='tel' value="{{tel}}" maxlength="11" placeholder="联系手机号码" confirm-type='next' />
+    </view>
+    <view class="tinyline"></view>
+    <view class="form-group">
+        <label class="addon">省份</label>
+        <picker bindchange="SetArea" data-id="1" value="{{A1}}" range="{{Province}}" range-key="name">
+            <view class="picker">
+            {{Province[A1].name}}
+            </view>
+        </picker>
+    </view>
+    <view class="form-group">
+        <label class="addon">城市</label>
+        <picker bindchange="SetArea" data-id="2" value="{{A2}}" range="{{City}}" range-key="name">
+            <view class="picker">
+            {{City[A2].name}}
+            </view>
+        </picker>
+    </view>
+    <view class="form-group">
+        <label class="addon">区县</label>
+        <picker bindchange="SetArea" data-id="3" value="{{A3}}" range="{{Area}}" range-key="name">
+            <view class="picker">
+            {{Area[A3].name}}
+            </view>
+        </picker>
+    </view>
+    <view class="form-group">
+        <label class="addon">地址</label>
+        <input type="text" name='adr' placeholder="详细收件地址" confirm-type='done' value="{{addr}}"/>
+    </view>
+    <!-- <view class="tinyline"></view> -->
+    <!--添加身份证  -->
+    <view class="addimg">
+      <view class="title clear">
+        <text class="pull-left">上传身份证正反面</text>
+        <text class="pull-right fontcolor" data-img="sfz" bindtap="ShowImg">示例图片</text>
+      </view>
+      <view class="pic1 com"> 
+          <view class="sfzpic" wx:if="{{sfz1!=''}}">
+            <image src="{{sfz1}}" data-id="sfz1"  bindtap="PreviewImg"></image>
+            <text data-id="sfz1" bindtap="DelSfz">删除</text>
+          </view>
+        <view class="addicon" bindtap="ChooseSfz" data-id="sfz1" wx:if="{{sfz1==''}}">
+          <image src="../../res/add1.png"></image>          
+        </view>
+      </view>
+       <view class="sfz com"> 
+          <view class="sfzpic" wx:if="{{sfz2!=''}}">
+            <image src="{{sfz2}}" data-id="sfz2"  bindtap="PreviewImg"></image>
+            <text data-id="sfz2" bindtap="DelSfz">删除</text>
+          </view>
+        <view class="addicon" bindtap="ChooseSfz" data-id="sfz2" wx:if="{{sfz2==''}}">
+          <image src="../../res/add2.png"></image>
+        
+        </view>
+      </view>
+    </view>
+    <!--提交订单底脚  -->
+    <view class="pay">
+      <view class="money">
+        <view class="cont">
+          <text>￥{{price}}</text>
+          <text>(代理服务费)</text>
+        </view>
+      </view>
+      <button type="primary" form-type="submit">确认提交</button>
+    </view>
+</form>
+<view class="modal" wx:if="{{modal}}" bindtap="HideModal"></view>
+<view class="modalcont"  wx:if="{{modal}}">
+  <image src="{{exImg}}"></image>
+</view>
+ 
+<include wx:if="{{ShowCode}}" src="../modal.wxml"/>
+<include src="../footer.wxml"/>

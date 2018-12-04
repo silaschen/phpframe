@@ -1,0 +1,63 @@
+<view class="page">
+  <view class="nav">
+    <view class="all {{cur[0]}}" bindtouchstart="CurPage" data-index="0">
+      <text>全部</text>
+    </view>
+    <view class="over {{cur[1]}}" bindtouchstart="CurPage" data-index="1">
+      <text>已支付</text>
+    </view>
+    <view class="wait {{cur[2]}}" bindtouchstart="CurPage" data-index="2">
+      <text>待支付</text>
+    </view>
+  </view>
+  <view id="section">
+    <swiper bindchange="ChangePage" current="{{index}}">
+      <swiper-item id="s1">
+        <block wx:for="{{datalist}}">
+          <navigator class="list" url="pay?id={{item.id}}">
+            <view class="name clear" >
+              <text class="pull-left">补换驾驶证</text>
+              <text class="pull-right wait" bindtouchstart="ToPay" wx:if="{{item.status==1}}">待付款</text>
+              <text class="pull-right over"  wx:if="{{item.status==2}}">已付款</text>
+              <text class="pull-right cancel"  wx:if="{{item.status==0}}">已取消</text>
+              <text class="pull-right send"  wx:if="{{item.status==3}}">已发货</text>
+              <text class="pull-right ok"  wx:if="{{item.status==4}}">已办结</text>
+            </view>
+            <view class="time">
+              下单时间： <text>{{item.addtime}}</text>
+            </view>
+          </navigator>
+        </block>
+        <view class="nodata" wx:if="{{nodata1}}">没有数据啦！</view>
+      </swiper-item>
+      <swiper-item id="s2">
+        <block wx:for="{{overDatalist}}">
+          <navigator class="list"  url="pay?id={{item.id}}">
+            <view class="name clear">
+              <text class="pull-left">补换驾驶证</text>
+              <text class="pull-right over">已付款</text>
+            </view>
+            <view class="time">
+              下单时间： <text>{{item.addtime}}</text>
+            </view>
+          </navigator>
+        </block>
+         <view class="nodata" wx:if="{{nodata2}}">没有数据啦！</view>
+      </swiper-item>
+      <swiper-item id="s3">
+        <block wx:for="{{waitDatalist}}">
+          <navigator class="list"  url="pay?id={{item.id}}">
+            <view class="name clear">
+              <text class="pull-left">补换驾驶证</text>
+              <text class="pull-right wait">待付款</text>
+            </view>
+            <view class="time">
+              下单时间： <text>{{item.addtime}}</text>
+            </view>
+          </navigator>
+        </block>
+         <view class="nodata" wx:if="{{nodata3}}">没有数据啦！</view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>

@@ -1,0 +1,71 @@
+<view class="page">
+  <view class="clear">
+    <view class="pull-left">
+      <view>
+        <image src="../../res/3.png"></image>年审委托书</view>
+    </view>
+    <view class="pull-right">
+      <text>￥ {{money}}</text>
+    </view>
+  </view>
+  <view class="tinyline"></view>
+  <view class="info">
+    <view class="name com">
+      <i class="iconfont icon-gerenxinxi"></i><text>{{name}}</text>
+    </view>
+    <view class="tinyline"></view>
+    <view class="code com">
+      <i class="iconfont icon-shijianrili"></i><text>{{code}}</text>
+    </view>
+    <view class="tinyline"></view>
+    <view class="tel com">
+      <i class="iconfont icon-shouji"></i><text>{{tel}}</text>
+    </view>
+    <view class="tinyline"></view>
+    <view class="wtd com">
+      <i class="iconfont icon-dangqianweizhi"></i><text>{{wtd}}</text>
+    </view>
+    <view class="tinyline"></view>
+    <view class="addr com">
+      <i class="iconfont icon-weizhi"></i><text>{{addr}}</text>
+    </view>
+    <view class="tinyline"></view>
+    <view class="company com" wx:if="{{stat==3}}">
+      <i class="iconfont icon-zhuye"></i><text>{{company}}</text>
+    </view>
+    <view class="tinyline" wx:if="{{stat==3}}"></view>
+    <view class="num com" wx:if="{{stat==3}}">
+      <i class="iconfont icon-pinglun"></i><text>{{num}}</text>
+    </view>
+    <view class="tinyline" wx:if="{{stat==3}}"></view>
+  </view>
+  <view wx:if="{{stat==2}}">
+    <view class="need">请将<text>《车主行车证原件》</text>或<text>《车主机动车登记证书原件》</text>(2选1)寄送以下地址：</view>
+    <view class="tinyline"></view>
+    <view class="address">
+           <text>邮寄地址：郑州市二七区侯寨乡郑州浩磊车友俱乐部。</text>
+      <text> 收件人:小磊</text>
+      <text>电话:0371-68901001 18318555555</text>
+    </view>
+  </view>
+  <view class="foot" wx:if="{{stat==0}}">
+    <button type="primary" disabled>订单已取消</button>
+  </view>
+  <view class="foot" wx:if="{{stat==3}}">
+    <button type="primary" class="shouhuo" bindtap="GetLetter">确认收货</button>
+  </view>
+  <view class="foot" wx:if="{{stat==4}}">
+    <button type="primary" disabled class="bj">业务已办结</button>
+  </view>
+  <view class="foot" wx:if="{{stat==0}}">
+    <button type="primary" disabled>订单已取消</button>
+  </view>
+  <view class="foot" wx:if="{{stat==1}}">
+    <view class="cancelOrder" bindtap="CancelOrder">取消订单</view>
+    <button type="primary" class="toPay" bindtap="ToPay"><text>￥{{money}} 确认支付</text></button>
+  </view>
+  <view class="foot" wx:if="{{stat==2}}">
+    <button type="primary" class="pay" disabled>订单已支付</button>
+  </view>
+
+</view>

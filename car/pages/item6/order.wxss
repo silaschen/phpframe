@@ -1,0 +1,125 @@
+/* pages/section/order.wxss */
+/*导航  */
+.nav{
+  display: flex;
+  display: -webkit-flex;
+  background: #fff;
+   border-bottom:1px solid #dedede;
+   position: relative;
+   z-index:1000;
+}
+.nav view{
+  width:calc(100% / 3);
+  text-align: center;
+  height:90rpx;
+}
+.nav view text{
+  border-bottom:2px solid transparent;
+  line-height:90rpx;
+  padding-bottom:26rpx;
+}
+.nav view.active text{
+  color:#129FE7;
+  border-color:#129FE7;
+}
+/*主体部分  */
+#section{
+  position: relative;
+}
+#section swiper{
+  position: fixed;
+  bottom:0;
+  width:100%;
+  top:90rpx;
+  left:0;
+  height:auto;
+}
+#section swiper swiper-item{
+  height:100%;
+  padding:0 20rpx;
+  box-sizing: border-box;
+  overflow: scroll; 
+}
+/*订单列表  */
+#section swiper swiper-item .list{
+  padding:20rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  margin-top:20rpx;
+} 
+/*订单标题  */
+#section swiper swiper-item .list .name .pull-left{
+  color:#444;
+  font-size:32rpx;
+  font-weight:600;
+}
+#section swiper swiper-item .list .name .pull-right{
+  font-size:28rpx;
+  padding:5rpx 10rpx;
+  position: relative;
+}
+/*订单状态  */
+#section swiper swiper-item .list .name .pull-right.over{
+  color:#18C930;
+}
+#section swiper swiper-item .list .name .pull-right.wait{
+  color:#EC526D;
+}
+#section swiper swiper-item .list .name .pull-right.cancel{
+  color:#aaa;
+}
+#section swiper swiper-item .list .name .pull-right.send{
+  color:#17E2E0;
+}
+#section swiper swiper-item .list .name .pull-right.ok{
+  color:#1756E2;
+}
+#section swiper swiper-item .list .name .pull-right:after{
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  border: 1rpx solid #EC526D;
+  border-radius:8rpx;
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -webkit-transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  -o-transform: scale(0.5, 0.5);
+  transform: scale(0.5, 0.5);
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+}
+#section swiper swiper-item .list .name .pull-right.cancel:after{
+  border-color:#aaa;
+}
+#section swiper swiper-item .list .name .pull-right.over:after{
+  border-color:#18C930;
+}
+#section swiper swiper-item .list .name .pull-right.wait:after{
+  border-color:#EC526D;
+}
+#section swiper swiper-item .list .name .pull-right.send:after{
+  border-color:#17E2E0;
+}
+#section swiper swiper-item .list .name .pull-right.ok:after{
+  border-color:#1756E2;
+}
+/*订单时间  */
+#section swiper swiper-item .list .time{
+  color:#888;
+  font-size:24rpx;
+  margin-top:10rpx;
+}
+#section swiper swiper-item .nodata{
+  line-height: 4;
+  font-size:28rpx;
+  color:#888;
+  text-align: center;
+}

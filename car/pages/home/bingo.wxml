@@ -1,0 +1,16 @@
+<view class="bingo">
+    <image src="../../res/bingo.png" class="logo" mode="widthFix"></image>
+    <view class="service">微信平台 . 小程序 . APP</view>
+    <view class="slogan">
+        值得信赖的移动互联网开发服务商!
+    </view>
+    <view class="form-group">
+   <button type="primary" bindtap="AddContact" class="addcontact">加入通讯录</button>
+   </view>
+    <view class="profile" bindtap="CallMe">
+    <image src="../../res/author.jpg" class="author" mode="widthFix"></image>
+   <view><text>[项目总监]</text> 杨林</view>
+   <view>TEL：15890602030</view>
+   </view>
+   
+</view>
