@@ -1,5 +1,5 @@
 <?php
-
+include 'auto.php';
 $module = filter_input(INPUT_GET, 'module')?filter_input(INPUT_GET, 'module'):'index';
 $page = filter_input(INPUT_GET, 'page')?filter_input(INPUT_GET, 'page') : 'index';
 define("DEFAULT_MODULE",'index');
