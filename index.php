@@ -21,6 +21,7 @@ function handurl(){
 }
 
 $path = handurl();
+//print_r($path);die;
 include_once $path;
 $spa = "\\app\\handler\\$module\\executeRequest";
 $spa();

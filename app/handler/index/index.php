@@ -8,32 +8,40 @@ function executeRequest(){
 }
 
 class IndexHandler{
-	const TOKEN="minigame";
+	const TOKEN="mini";
 
 	function run(){
+
 		$action = filter_input(INPUT_GET, 'action');
 		switch ($action) {
 			case 'check':
 				$this->checkSignature();
 				break;
+			default:
+				$this->index();
+				break;
 		}
 	}
 
 	private function checkSignature(){
-		$token = filter_input(INPUT_GET, self::TOKEN);
 		$signature = $_GET["signature"];
-		$timestamp = $_GET["timestamp"];
-		$nonce = $_GET["nonce"];
-		$tmpArr = array($token, $timestamp, $nonce);
-		sort($tmpArr, SORT_STRING);
-		$tmpStr = implode( $tmpArr );
-		$tmpStr = sha1( $tmpStr );
-		if( $tmpStr == $signature ){
-			return true;
-		}else{
-			return false;
-		}
+	$timestamp = $_GET["timestamp"];
+	$nonce = $_GET["nonce"];
+
+	$token = "minis";
+	$tmpArr = array($token, $timestamp, $nonce);
+	sort($tmpArr, SORT_STRING);
+	$tmpStr = implode( $tmpArr );
+	$tmpStr = sha1( $tmpStr );
+	//file_put_contents('/var/www/mini/xxx.txt',json_encode([$tmpStr,$signature]));
+	
+	if( $tmpStr == $signature ){
+		//return true;
+		echo $_GET['echostr'];
+	}else{
+		return false;
 	}
+}
 
 
 	//处理主入口
