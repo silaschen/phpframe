@@ -19,7 +19,9 @@ class MiniHandler{
 			case 'login':
 				$this->OnLogin();
 				break;
-		
+			case 'slide':
+				$this->Slide();
+				break;
 		}
 	}
 
@@ -69,9 +71,14 @@ class MiniHandler{
 
 
 	#获取轮播图#
-	public function SlidePhoto(){
-		$imgs = M('sys_advs')->where(array('type'=>1,'status'=>1))->order('addtime desc')->select();
-		exit(json_encode(array('imgs'=>$imgs)));
+	public function Slide(){
+		$imgs = [
+				['pic'=>'http://c.hiphotos.baidu.com/image/pic/item/4ec2d5628535e5dd65826bbf7dc6a7efce1b6220.jpg'],
+
+			];
+
+		//header("Content-Type:application/json");
+		exit(json_encode($imgs));
 	}
 
 
