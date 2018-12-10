@@ -33,6 +33,10 @@ class Config
 		'port'=>465
 	);
 	public static $SITE_NAME='Blog';
+	public static $wechat = array(
+		'APPID'=>"wx8482a902f90eb22d",
+		"SECRET"=>"f01ba4f4e758363a1d128fd12c79f67a"
 
+	);
 
 }
