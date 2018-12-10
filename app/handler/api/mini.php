@@ -74,11 +74,11 @@ class MiniHandler{
 	public function Slide(){
 		$imgs = [
 				['pic'=>'http://c.hiphotos.baidu.com/image/pic/item/4ec2d5628535e5dd65826bbf7dc6a7efce1b6220.jpg'],
-
+			['pic'=>'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543941486834&di=4abe0d3eb8df742a2791795798c09af6&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F6d81800a19d8bc3ec6ff1a808f8ba61ea9d34580.jpg'],
 			];
 
 		//header("Content-Type:application/json");
-		exit(json_encode($imgs));
+		exit(json_encode(['imgs'=>$imgs]));
 	}
 
 
