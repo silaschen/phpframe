@@ -28,7 +28,7 @@ Page({
       title: '加载中',
     })
     wx.request({
-      url: App.data['API_URL']+'?m=Mini&a=SlidePhoto',
+      url: App.data['API_URL']+'/api/mini/slide',
       method: "GET",
       header: {
         'content-type': 'application/json'
