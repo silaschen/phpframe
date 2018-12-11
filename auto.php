@@ -5,7 +5,7 @@ spl_autoload_register(function($class){
 	$classname = end($param).".php";
 	$path = __DIR__;
 	array_pop($param);
-	var_dump($class);
+	//var_dump($class);
 	$path = array(__DIR__.'/extend',__DIR__);
 	for ($i=0; $i < count($path); $i++) { 
 			

@@ -5,17 +5,17 @@ namespace config;
 *author:silaschen
 *wechat:18811174687
 */
-class Config
+class config
 {
-	const UPLOADPATH = '/var/www';
+	const UPLOADPATH = 'D:/uploadfile';
 	const ALLOW_UPLOAD_FILE = array(
 		'jpg','png','pdf'
 	);
-	public static $webroot="http://sw.com";
+	public static $webroot="http://local.com";
 	public static $db=array(
-		'dsn' => "mysql:host=127.0.0.1;dbname=film",
+		'dsn' => "mysql:host=127.0.0.1;dbname=test",
 		'user' => 'root',
-		'password' => 'chen1210'
+		'password' => 'root'
 	);
 
 	public static $redis=array(
@@ -29,9 +29,14 @@ class Config
 		'host'=>'smtp.qq.com',
 		'mailname'=>'434684326@qq.com',
 		'password'=>'tcgvwzmwmqbdcaii',
-		'from'=>'男宠天气提醒',
+		'from'=>'redphp',
 		'port'=>465
 	);
+	public static $SITE_NAME='Blog';
+	public static $wechat = array(
+		'APPID'=>"wx8482a902f90eb22d",
+		"SECRET"=>"f01ba4f4e758363a1d128fd12c79f67a"
 
+	);
 
 }

@@ -2,6 +2,7 @@
 namespace app\handler\api;
 use helper\redisClient;
 use helper\Assist;
+use helper\Wechat;
 function executeRequest(){
 	$handler = new MiniHandler();
 	$handler->run();
@@ -22,39 +23,52 @@ class MiniHandler{
 			case 'slide':
 				$this->Slide();
 				break;
+			case "token":
+				$this->info();
+				break;
 		}
 	}
 
+	public function info(){
+		$info  = $this->IsCached();
+	
+		$we = new Wechat();
+		$data = json_decode(file_get_contents("php://input"),true);
+			
+         	$data['touser'] = $this->openid;
+      		$data['template_id'] = 'O_3Cq3dLUfghuKQttLjmKyQwApc__xXw_assJCRRBJQ';
+      $data['page'] = '';
+      $data['form_id']=$data['formId'];
+      $data['data']['keyword1']['value'] = 'test';
+      $data['data']['keyword1']['color'] = '#173177';
+      $data['data']['keyword2']['value'] = 'bank transfer';
+      $data['data']['keyword2']['color'] = '#173177';
+      $data['data']['keyword3']['value'] = '1000';
+      $data['data']['keyword3']['color'] = '#173177';
+      $data['data']['keyword4']['value'] =  date("Y-m-d",time());
+      $data['data']['keyword4']['color'] = '#173177';
+
+	$info = $we->tplmsg($data);
+	print_r($info);
+   }
 
 	public function OnLogin(){
 		$code = $_GET['code'];
 		$url = 'https://api.weixin.qq.com/sns/jscode2session?appid='.APPID.'&secret='.SECRET.'&js_code='.$code.'&grant_type=authorization_code';
+	
 		$r = json_decode(file_get_contents($url),true);
-		var_dump($r);die;
-		$session = substr(md5(NOW_TIME.$r['openid']),8,16);
-		//$r['session_key'].$r['openid']
-		S($session,$r,9000,'memcache');
-		//保存用户·信息
-		$data = json_decode(file_get_contents("php://input"),true);
-		$user['headimgurl'] = $data['userdata']['avatarUrl'];
-		$user['nickname'] = $this->WxDelName($data['userdata']['nickName']);
-		$user['sex'] = $data['userdata']['gender'];
-		$user['city'] = $data['userdata']['city'];
-		$user['province'] = $data['userdata']['province'];
-		$user['country'] = $data['userdata']['country'];
-		if(!(M('user_list')->where(array('openid'=>$r['openid']))->find())){
-			$user['openid'] = $r['openid'];
-			$user['addtime'] = NOW_TIME;
-			M('user_list')->add($user);
-		}else{
-			//update
-			M('user_list')->where(array('openid'=>$r['openid']))->save($user);
-		}
-
-		json(array('sessionkey'=>$session),1);
+		//print_r($r);die;
+	
+		$key = substr(md5(time().$r['openid']),8,16);
+		$this->openid = $r['openid'];
+		$redis = redisClient::client();
+		$redis->set($key,json_encode($r),9000);
+		
+		exit(json_encode(array('ret'=>1,'sessionkey'=>$key)));
 	}
 
-	#过滤字符#
+
+
 	public function WxDelName($str) {
 	    if($str){
 	        $tmpStr = json_encode($str);
@@ -81,15 +95,12 @@ class MiniHandler{
 		exit(json_encode(['imgs'=>$imgs]));
 	}
 
-
-	#状态检查#
 	protected function IsCached($sk = false){
-		if(!$sk) $sk = I('get.sessionkey');
-		$info = S($sk);
-		if(!$info) json('LoginError!');
+		$sk = $_GET['sessionkey'];
+		$info = json_decode(redisClient::client()->get($sk),true);
+		if(!$info) exit(json_encode(['msg'=>'error']));
 		$this->openid = $info['openid'];
-		if(!$info['openid']) json('缺少openid');
-		S($sk,$info,9000,'memcache');
+		if(!$info['openid']) return false;
 		return $info;
 	}
 

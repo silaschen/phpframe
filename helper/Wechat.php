@@ -11,28 +11,58 @@ class Wechat
 	public $accesstoken;
 	public $appid;
 	public $secret;
+	public $token;
+
 	public function __construct(){
 		$this->appid = \config\Config::$wechat['APPID'];
-		$this->secret = \config\Config::$wechat['APPSECRET'];
+		$this->secret = \config\Config::$wechat['SECRET'];
+		$this->getAccessToken();
 	}
 
 
 	public function getAccessToken(){
-		$url = sprintf("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s",$this->appid,$this->secret);
-		$info = Assit::CallServer($url);
 
-		return $info;
+		$key = self::GetKeyToken();
+		$redis  = redisClient::client();
+		print_r($this->token);
+		if($redis->get($key)){
+
+			$this->token = $redis->get($key);
+
+		}else{
+			
+			$url = sprintf("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s",$this->appid,$this->secret);
+			$info = Assist::CallServer($url);
+	
+			$token = json_decode($info['content'],true);
+			$this->token = $token['access_token'];
+			$redis->set($key,$this->token,$token['expires_in']);
+
+		}
+
+	}
+
+	public static function GetKeyToken(){
+		
+		return sprintf("AccessKey-%s",'mini');
 
 	}
 
 	
+	public function tplmsg($data){
+
+		$url = sprintf("https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=%s",$this->token);
+		$ret = json_decode(Assist::CallServer($url,'POST',[],$data)['content'],true);
+		if($ret['errcode'] != 0 ){
+			return $ret;
+		}
+
+		return true;
+
+	}
 
 
 	
-
-
-
-
 
 
 
