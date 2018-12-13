@@ -5,7 +5,7 @@ namespace config;
 *author:silaschen
 *wechat:18811174687
 */
-class config
+class Config
 {
 	const UPLOADPATH = 'D:/uploadfile';
 	const ALLOW_UPLOAD_FILE = array(
@@ -15,7 +15,7 @@ class config
 	public static $db=array(
 		'dsn' => "mysql:host=127.0.0.1;dbname=test",
 		'user' => 'root',
-		'password' => 'root'
+		'password' => 'chen1210'
 	);
 
 	public static $redis=array(

@@ -15,6 +15,8 @@ class MiniHandler{
 	public $openid;
 	
 	public function run(){
+			ini_set('date.timezone','Asia/Shanghai');
+
 		$action = filter_input(INPUT_GET, 'action');
 		switch ($action) {
 			case 'login':
@@ -23,10 +25,60 @@ class MiniHandler{
 			case 'slide':
 				$this->Slide();
 				break;
+			case "deal":
+				$this->deal();
+				break;
 			case "token":
 				$this->info();
 				break;
 		}
+	}
+
+	function __construct(){
+		
+		$this->wechat= new Wechat();
+
+	}	
+
+
+	public function deal(){
+			$this->IsCached();
+			$appid = \config\Config::$wechat['APPID'];
+			$sessionKey = $this->sessionkey;
+			$da = json_decode(file_get_contents("php://input"),true);
+			$Data=$da['run'];
+			$iv  = urldecode($da['iv']);
+			$ret =json_decode($this->wechat->getSecData($this->sessionkey,$iv,$Data),true)['stepInfoList'];
+			foreach($ret as $k=>$v){
+
+				$ret[$k]['time'] = date("Y-m-d",$v['timestamp']);
+			}
+			
+			$red = self::OrderData($ret,'timestamp');
+			exit(json_encode($red));
+
+
+	}
+
+
+	public function OrderData($data,$key){
+		foreach($data as $k=>$v){
+
+			$ret[$k]=$v[$key];
+		}		
+		
+		krsort($ret);
+		//print_r($ret);die;
+		$res = [];
+		foreach($ret as $kk=>$vv){
+			
+			array_push($res,$data[$kk]);
+
+		}
+
+		return $res;
+
+
 	}
 
 	public function info(){
@@ -61,6 +113,7 @@ class MiniHandler{
 	
 		$key = substr(md5(time().$r['openid']),8,16);
 		$this->openid = $r['openid'];
+		$this->sessionkey=$r['session_key'];
 		$redis = redisClient::client();
 		$redis->set($key,json_encode($r),9000);
 		
@@ -99,7 +152,9 @@ class MiniHandler{
 		$sk = $_GET['sessionkey'];
 		$info = json_decode(redisClient::client()->get($sk),true);
 		if(!$info) exit(json_encode(['msg'=>'error']));
+		//print_r($info);
 		$this->openid = $info['openid'];
+		$this->sessionkey=$info['session_key'];
 		if(!$info['openid']) return false;
 		return $info;
 	}

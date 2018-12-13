@@ -13,7 +13,7 @@ spl_autoload_register(function($class){
 				$path[$i] .= "/".$value;
 			}
 			$classpath = $path[$i]."/".$classname;
-			// echo $classpath.'*****';
+			//echo $classpath.'*****';
 			if(file_exists($classpath)){
 				include_once $classpath;
 				return true;
