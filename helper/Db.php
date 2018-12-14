@@ -6,12 +6,17 @@ class Db
 	private static $client;//类的实例
 	//私有构造函数，禁止外界new
 	private function __construct()
-	{	$dbconfig = \config\Config::$db;
+	{	
+		ini_set('display_errors','On');
+		error_reporting(E_ALL);
+		$dbconfig = \config\Config::$db;
 		$dsn= $dbconfig['dsn'];
 		$user = $dbconfig['user'];
 		$pass = $dbconfig['password'];
 		try {
 			$this->conn = new \PDO($dsn,$user,$pass);
+
+			$this->conn->setAttribute(\PDO::ATTR_ERRMODE,\PDO::ERRMODE_EXCEPTION);
 		} catch (\Exception $e) {
 			exit($e->getMessage());	
 		}
@@ -20,7 +25,7 @@ class Db
 	//静态方法，提供类的实例
 	public static function client(){
 		if(!self::$client){
-			self::$client = new self();
+			self::$client = new Db();
 		}
 		return self::$client;
 	}
@@ -37,7 +42,16 @@ class Db
 
 	//插入，更新
 	public function execute($sql){
-		return $this->conn->exec($sql);
+
+		try {
+		var_dump($sql);
+			print_r($this->conn->exec($sql));
+		}
+		catch (PDOException $e){
+			print_r($e->getMessage());
+			die;
+		}	
+
 	}
 
 }
