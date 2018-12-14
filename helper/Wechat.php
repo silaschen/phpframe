@@ -62,7 +62,21 @@ class Wechat
 	}
 
 
-	
+	public function getSecData($sessionkey,$iv,$encryptedData){
+		
+		$pc = new \werun\WXBizDataCrypt($this->appid, $sessionkey);
+		$errCode = $pc->decryptData($encryptedData, $iv, $data );
+
+		if ($errCode == 0) {
+   			 $run = json_decode($data,true);
+
+        		return json_encode($run);
+
+		} else {
+    			return $errCode;
+		}
+
+	}
 
 
 

@@ -31,6 +31,9 @@ class MiniHandler{
 			case "token":
 				$this->info();
 				break;
+			case "db":
+				$this->Db();
+				break;
 		}
 	}
 
@@ -39,7 +42,13 @@ class MiniHandler{
 		$this->wechat= new Wechat();
 
 	}	
+	
+	public function Db(){
+		$db = \helper\Db::client();
+		$sql = sprintf("insert into user_info (user_name,user_pwd) VALUES ('%s','%s')",'xiao','1234');
+		$db->execute($sql);
 
+	}
 
 	public function deal(){
 			$this->IsCached();
@@ -52,6 +61,7 @@ class MiniHandler{
 			foreach($ret as $k=>$v){
 
 				$ret[$k]['time'] = date("Y-m-d",$v['timestamp']);
+				$ret[$k]['x'] = floor(($v['step']*100)/10000);
 			}
 			
 			$red = self::OrderData($ret,'timestamp');
@@ -140,7 +150,7 @@ class MiniHandler{
 	#获取轮播图#
 	public function Slide(){
 		$imgs = [
-				['pic'=>'http://c.hiphotos.baidu.com/image/pic/item/4ec2d5628535e5dd65826bbf7dc6a7efce1b6220.jpg'],
+				['pic'=>'http://h.hiphotos.baidu.com/image/pic/item/dcc451da81cb39dbc1f90411dd160924ab1830bf.jpg'],
 			['pic'=>'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543941486834&di=4abe0d3eb8df742a2791795798c09af6&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F6d81800a19d8bc3ec6ff1a808f8ba61ea9d34580.jpg'],
 			];
 
