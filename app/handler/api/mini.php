@@ -3,6 +3,7 @@ namespace app\handler\api;
 use helper\redisClient;
 use helper\Assist;
 use helper\Wechat;
+use helper\FileUpload;
 function executeRequest(){
 	$handler = new MiniHandler();
 	$handler->run();
@@ -34,6 +35,9 @@ class MiniHandler{
 			case "db":
 				$this->Db();
 				break;
+			case "getres":
+				$this->getRes();
+				break;
 		}
 	}
 
@@ -43,6 +47,48 @@ class MiniHandler{
 
 	}	
 	
+
+	public function getRes(){
+
+		//print_r($_FILES);
+		$upload = new FileUpload('file');
+		$upload->upload();
+		if($upload->uploadok()){
+			$path = $upload->fileinfo['target'];
+			
+			$baseimg = $this->base64Image($path);
+			//print_r($baseimg);
+			$ret = \helper\Assist::CallAI("getres",json_encode(["image"=>$baseimg]));
+			if($ret['code'] == 200){
+				exit(json_encode($ret['content']));
+
+			}
+		}
+	}
+
+	
+
+
+
+	function base64Image ($image_file) {
+  		$base64_image = '';
+  		$image_info = getimagesize($image_file);
+	  	$image_data = fread(fopen($image_file, 'r'), filesize($image_file));
+ 		// $base64_image = 'data:' . $image_info['mime'] . ';base64,' . chunk_split(base64_encode($image_data));
+		$base64_image = chunk_split(base64_encode($image_data));
+	  	return $base64_image;
+	}	
+
+
+
+
+
+
+
+
+
+
+
 	public function Db(){
 		$db = \helper\Db::client();
 		$sql = sprintf("insert into user_info (user_name,user_pwd) VALUES ('%s','%s')",'xiao','1234');
@@ -151,7 +197,6 @@ class MiniHandler{
 	public function Slide(){
 		$imgs = [
 				['pic'=>'http://h.hiphotos.baidu.com/image/pic/item/dcc451da81cb39dbc1f90411dd160924ab1830bf.jpg'],
-			['pic'=>'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543941486834&di=4abe0d3eb8df742a2791795798c09af6&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F6d81800a19d8bc3ec6ff1a808f8ba61ea9d34580.jpg'],
 			];
 
 		//header("Content-Type:application/json");

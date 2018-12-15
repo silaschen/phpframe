@@ -7,7 +7,7 @@ namespace config;
 */
 class Config
 {
-	const UPLOADPATH = 'D:/uploadfile';
+	const UPLOADPATH = '/var/www/uploadfile';
 	const ALLOW_UPLOAD_FILE = array(
 		'jpg','png','pdf'
 	);

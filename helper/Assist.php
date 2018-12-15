@@ -18,6 +18,18 @@ class Assist
 		}
 		return $retpath;
 	}
+	
+
+	public static function CallAI($path,$data){
+
+		$url = sprintf("http://%s:%s/%s",'127.0.0.1',8006,$path);
+		$ret = self::CallServer($url,'POST',array(),$data);
+		return $ret;
+
+
+
+	}
+
 
 	/**
 	*Curl get and post server
